@@ -17,11 +17,12 @@ function App() {
 
 
   const wallpaperStyle={
-    height: "100vh",
+    minHeight: "100vh",
+    width:"100%",
     backgroundImage: `url('${Imag}')`,
     backgroundPosition: 'center',
     backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
+    // backgroundRepeat: 'no-repeat',
   }
 
 

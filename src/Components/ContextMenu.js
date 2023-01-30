@@ -23,13 +23,15 @@ function ContextMenu(props) {
   return (
 
     <> 
-    <div style={{position: "absolute",height:"200px",width:"200px",background:"white",   left:props.x, top:props.y,filter: "blur(5px) saturate(2) hue-rotate(0deg)",}}>
+    <div style={{border:"solid rgba(85,85,85,0.4) 1px",position: "absolute",height:"200px",width:"200px",background:"rgba(0,0,0,0.6)",backdropFilter:" blur(20px) saturate(100%)",   left:props.x, top:props.y}}>
     </div>
-    <div style={MenuStyle}>
+   
+    
+    {/* <div style={MenuStyle}>
     <ul style={{paddingLeft:"20px"}}>
       {itemList}
     </ul>
-  </div>
+  </div> */}
      </>
 
     
