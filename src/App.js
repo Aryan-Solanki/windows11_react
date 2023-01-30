@@ -15,7 +15,6 @@ import { useState ,useEffect} from 'react';
 
 function App() {
 
-
   const wallpaperStyle={
     minHeight: "100vh",
     width:"100%",
@@ -27,7 +26,8 @@ function App() {
 
 
   const [show,setShow]=useState(false);
-  const [position,setPosition]=useState({y:0,x:0});
+  const [leftposition,setLeftposition]=useState(0);
+  const [topposition,setTopposition]=useState(0);
 
   useEffect(() => {
     const handleClick=()=>setShow(false);
@@ -37,10 +37,21 @@ function App() {
 
 
   const customContent=(e)=>{
-    e.preventDefault();
-    const {pageX,pageY}=e;
-    setShow(true);
-    setPosition({y:pageY,x:pageX});
+      e.preventDefault();
+      const {pageX,pageY}=e;
+      setShow(true);
+      if(pageX>window.innerWidth-380){
+        setLeftposition(pageX-380);
+      }
+      else{
+        setLeftposition(pageX);
+      }
+      if(pageY>window.innerHeight-200){
+        setTopposition(pageY-200);
+      }
+      else{
+        setTopposition(pageY);
+      }
     }
     
   return (
@@ -53,7 +64,7 @@ function App() {
         <IconButton ima={LinkedIn} filename={"LinkedIn"}/>
         <IconButton ima={GitHub} filename={"Github"}/>
       </div>
-      {show&&<ContextMenu x={position.x} y={position.y}/>}
+      {show&&<ContextMenu x={leftposition} y={topposition}/>}
     
     </div>
     </>
