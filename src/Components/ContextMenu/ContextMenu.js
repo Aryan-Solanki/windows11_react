@@ -1,8 +1,6 @@
 import React,{useState} from 'react'
 import { IoIosArrowForward } from "react-icons/io";
-import { FiGrid } from "react-icons/fi";
-import { IoRefresh } from "react-icons/io5";
-import { TbArrowsSort } from "react-icons/tb";
+
 
 
 function MenuTile(props) {
@@ -18,18 +16,20 @@ function MenuTile(props) {
   };
   
   const MenuTileStyle={
+    zIndex:0,
     padding:"0px 10px",
     display:"flex",
-    height:"35px",
+    height:"40px",
     alignItems:"center",
     justifyContent:"space-between",
     borderRadius:"5px"
   }
 
   const HoverMenuTileStyle={
+    zIndex:0,
     padding:"0px 10px",
     display:"flex",
-    height:"35px",
+    height:"40px",
     alignItems:"center",
     justifyContent:"space-between",
     background:"rgba(255, 255, 255,0.05)",
@@ -52,9 +52,10 @@ function MenuTile(props) {
 function ContextMenu(props) { 
 
     const MenuStyle={
+      zIndex:0,
       border:"solid rgba(85,85,85,0.6) 1px",
       position: "absolute",
-      height:"122px",
+      height:props.height,
       width:"380px",
       background:"rgba(0,0,0,0.56)",
       backdropFilter:" blur(70px) saturate(100%)",
@@ -64,10 +65,10 @@ function ContextMenu(props) {
       boxShadow: "0 3px 10px rgb(0 0 0 / 0.2)",
     }  
   
-    const item = [{title:"View",icon:FiGrid,arrow:true},{title:"Sort by",icon:TbArrowsSort,arrow:true},{title:"Refresh",icon:IoRefresh,arrow:false},];
+    // const item = [{title:"View",icon:FiGrid,arrow:true},{title:"Sort by",icon:TbArrowsSort,arrow:true},{title:"Refresh",icon:IoRefresh,arrow:false},];
 
  
-    const itemList=item.map((i)=>{
+    const itemList=props.items.map((i)=>{
       return <MenuTile i={i}/>
     });
 

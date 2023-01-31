@@ -1,4 +1,3 @@
-// import React,{useState,useEffect} from 'react';
 import './App.css';
 import Imag from '../src/Asset/wallpaper.jpg';
 import RecycleBin from '../src/Asset/recyclebin.png';
@@ -6,16 +5,31 @@ import LinkedIn from '../src/Asset/linkedin.png';
 import PdfLogo from '../src/Asset/pdflogo.png';
 import ThisPc from '../src/Asset/thispc.png';
 import GitHub from '../src/Asset/github.png';
-import IconButton from './Components/IconButton.js';
-import ContextMenu from './Components/ContextMenu';
+import IconButton from './Components/IconButton/IconButton.js';
+import ContextMenu from './Components/ContextMenu/ContextMenu';
+import { FiGrid } from "react-icons/fi";
+import { IoRefresh } from "react-icons/io5";
+import { TbArrowsSort } from "react-icons/tb";
+
 import { useState ,useEffect} from 'react';
+
+
+import {useSelector,useDispatch} from "react-redux";
+import {iconClicked,iconNotClicked} from "./Components/Slices/isIconClickSlice";
 
 
 
 
 function App() {
 
+  const isIconClick=useSelector((state)=>state.isIconClick.isIconClick);
+  const dispatch=useDispatch();
+
+  const contextItem=[{title:"View",icon:FiGrid,arrow:true},{title:"Sort by",icon:TbArrowsSort,arrow:true},{title:"Refresh",icon:IoRefresh,arrow:false},];
+
+
   const wallpaperStyle={
+    zIndex:0,
     minHeight: "100vh",
     width:"100%",
     backgroundImage: `url('${Imag}')`,
@@ -29,6 +43,10 @@ function App() {
   const [leftposition,setLeftposition]=useState(0);
   const [topposition,setTopposition]=useState(0);
 
+  
+
+  const customContentHeight=133;
+
   useEffect(() => {
     const handleClick=()=>setShow(false);
     window.addEventListener("click",handleClick);
@@ -38,6 +56,7 @@ function App() {
 
   const customContent=(e)=>{
       e.preventDefault();
+      dispatch(iconNotClicked());
       const {pageX,pageY}=e;
       setShow(true);
       if(pageX>window.innerWidth-380){
@@ -46,26 +65,33 @@ function App() {
       else{
         setLeftposition(pageX);
       }
-      if(pageY>window.innerHeight-200){
-        setTopposition(pageY-200);
+      if(pageY>window.innerHeight-customContentHeight){
+        setTopposition(pageY-customContentHeight);
       }
       else{
         setTopposition(pageY);
       }
     }
-    
+
+  const iconData=[{icon:RecycleBin,title:"Recycle Bin"},{icon:ThisPc,title:"This PC"},{icon:PdfLogo,title:"Resume"},{icon:LinkedIn,title:"LinkedIn"},{icon:GitHub,title:"Github"}];
+  
+  const iconDataList=iconData.map((i)=>{
+    return <IconButton ima={i.icon} filename={i.title}/>
+  });
+
   return (
     <>
-    <div style={wallpaperStyle} onContextMenu={customContent}>
-      <div style={{display:"flex",flexDirection:"column",alignItems:"start",paddingLeft:"10px",paddingTop:"10px"}}>
-        <IconButton ima={RecycleBin} filename={"Recycle Bin"}/>
-        <IconButton ima={ThisPc} filename={"This PC"}/>
-        <IconButton ima={PdfLogo} filename={"Resume"}/>
-        <IconButton ima={LinkedIn} filename={"LinkedIn"}/>
-        <IconButton ima={GitHub} filename={"Github"}/>
+    <div style={{display:"flex",}}>
+      <div style={wallpaperStyle} onContextMenu={customContent}></div>
+      <div style={{display:"flex",flexDirection:"column",alignItems:"start",paddingLeft:"10px",paddingTop:"10px",zIndex:0,position:"absolute"}}>
+          <iconDataList/>
+          {/* <IconButton ima={RecycleBin} filename={"Recycle Bin"}/>
+          <IconButton ima={ThisPc} filename={"This PC"}/>
+          <IconButton ima={PdfLogo} filename={"Resume"}/>
+          <IconButton ima={LinkedIn} filename={"LinkedIn"}/>
+          <IconButton ima={GitHub} filename={"Github"}/> */}
       </div>
-      {show&&<ContextMenu x={leftposition} y={topposition}/>}
-    
+      {!isIconClick&&show&&<ContextMenu x={leftposition} y={topposition} height={customContentHeight} items={contextItem}/>}
     </div>
     </>
     
