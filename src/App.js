@@ -50,7 +50,7 @@ function App() {
   useEffect(() => {
     const handleClick=()=>setShow(false);
     window.addEventListener("click",handleClick);
-    // return ()=>window.removeEventListener("click",handleClick);
+    return ()=>window.removeEventListener("click",handleClick);
   }, []);
 
 

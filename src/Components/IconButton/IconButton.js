@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { FiGrid } from "react-icons/fi";
 import { IoRefresh } from "react-icons/io5";
 import { TbArrowsSort } from "react-icons/tb";
@@ -10,12 +10,25 @@ import {iconClicked,iconNotClicked} from "../Slices/isIconClickSlice";
 
 function IconButton(props) {  
 
+  const [show,setShow]=useState(false);
+
+  
+  useEffect(() => {
+    const handleClick=()=>setShow(false);
+    window.addEventListener("click",handleClick);
+    return ()=>window.removeEventListener("click",handleClick);
+  }, []);
+
+
+
   const customContentHeight=133;
 
   const [leftposition,setLeftposition]=useState(0);
   const [topposition,setTopposition]=useState(0);
 
   const isIconClick=useSelector((state)=>state.isIconClick.isIconClick);
+  const whichIconClick=useSelector((state)=>state.isIconClick.whichIconClick);
+  // whichIconClick
   const dispatch=useDispatch();
   
 
@@ -49,7 +62,8 @@ const  textStyle={
 
 const customContent=(e)=>{
   e.preventDefault();
-  dispatch(iconClicked());
+  setShow(true);
+  dispatch(iconClicked(props.filename));
   const {pageX,pageY}=e;
   if(pageX>window.innerWidth-380){
     setLeftposition(pageX-380);
@@ -73,7 +87,7 @@ const contextItem=[{title:"View",icon:FiGrid,arrow:true}]
           <p style={textStyle}>{props.filename}</p>
 
       </div>
-      {isIconClick&&<ContextMenu x={leftposition} y={topposition} height={customContentHeight} items={contextItem}/>}
+      {whichIconClick===props.filename&&isIconClick&&show&&<ContextMenu x={leftposition} y={topposition} height={customContentHeight} items={contextItem}/>}
     </>
     
   )
