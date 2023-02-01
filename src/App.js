@@ -81,7 +81,7 @@ function App() {
 
   return (
     <>
-    <div style={{display:"flex",}}>
+    <div style={{display:"flex",}} onContextMenu={(e)=>{e.preventDefault();}}>
       <div style={wallpaperStyle} onContextMenu={customContent}></div>
       <div style={{display:"flex",flexDirection:"column",alignItems:"start",paddingLeft:"10px",paddingTop:"10px",zIndex:0,position:"absolute"}}>
           {iconDataList}

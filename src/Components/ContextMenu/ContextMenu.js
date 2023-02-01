@@ -77,12 +77,15 @@ function ContextMenu(props) {
   return (
 
     <> 
-      <div style={MenuStyle}></div>
+    <div onContextMenu={(e)=>{e.preventDefault();}}>
+      <div style={MenuStyle} ></div>
       <div style={{color:"white",left:props.x,top:props.y-8,position:"absolute",zIndex:1,fontSize:"15px",}}>
         <ul style={{paddingLeft:"8px",paddingTop:"0px",width:"364px"}}>
           {itemList}
         </ul>
       </div>
+    </div>
+      
     </>
 
     
