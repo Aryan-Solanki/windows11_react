@@ -49,10 +49,11 @@ function MenuTile(props) {
 
 
 
+
 function ContextMenu(props) { 
 
     const MenuStyle={
-      zIndex:0,
+      zIndex:1,
       border:"solid rgba(85,85,85,0.6) 1px",
       position: "absolute",
       height:props.height,
@@ -77,7 +78,7 @@ function ContextMenu(props) {
 
     <> 
       <div style={MenuStyle}></div>
-      <div style={{color:"white",left:props.x,top:props.y-8,position:"absolute",fontSize:"15px",}}>
+      <div style={{color:"white",left:props.x,top:props.y-8,position:"absolute",zIndex:1,fontSize:"15px",}}>
         <ul style={{paddingLeft:"8px",paddingTop:"0px",width:"364px"}}>
           {itemList}
         </ul>

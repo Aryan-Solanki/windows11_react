@@ -68,7 +68,7 @@ const contextItem=[{title:"View",icon:FiGrid,arrow:true}]
 
   return (
     <>
-      <div onContextMenu={customContent} style={{marginBottom:"25px",paddingBottom:"6px",width:"80px",display:"flex",alignItems:"center",zIndex:100,flexDirection:"column",background:isHover?"rgba(255, 255, 255,0.2)":"none",}} onMouseEnter={mouseEnter} onMouseLeave={mouseExit}>
+      <div onContextMenu={customContent} style={{marginBottom:"25px",paddingBottom:"6px",width:"80px",display:"flex",alignItems:"center",zIndex:0,flexDirection:"column",background:isHover?"rgba(255, 255, 255,0.2)":"none",}} onMouseEnter={mouseEnter} onMouseLeave={mouseExit}>
           <button style={iconStyle}><img src={props.ima} alt="imae" style={iconImageStyle}/></button>
           <p style={textStyle}>{props.filename}</p>
 

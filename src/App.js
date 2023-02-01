@@ -84,12 +84,7 @@ function App() {
     <div style={{display:"flex",}}>
       <div style={wallpaperStyle} onContextMenu={customContent}></div>
       <div style={{display:"flex",flexDirection:"column",alignItems:"start",paddingLeft:"10px",paddingTop:"10px",zIndex:0,position:"absolute"}}>
-          <iconDataList/>
-          {/* <IconButton ima={RecycleBin} filename={"Recycle Bin"}/>
-          <IconButton ima={ThisPc} filename={"This PC"}/>
-          <IconButton ima={PdfLogo} filename={"Resume"}/>
-          <IconButton ima={LinkedIn} filename={"LinkedIn"}/>
-          <IconButton ima={GitHub} filename={"Github"}/> */}
+          {iconDataList}
       </div>
       {!isIconClick&&show&&<ContextMenu x={leftposition} y={topposition} height={customContentHeight} items={contextItem}/>}
     </div>
