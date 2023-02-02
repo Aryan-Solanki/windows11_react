@@ -6,6 +6,7 @@ const initialState={
     isIconClick:false,
     isIconLeftClicked:false,
     whichIconClick:"None",
+    whichIconLeftClick:"None",
 };
 
 export const isIconClickSlice = createSlice({
@@ -22,8 +23,9 @@ export const isIconClickSlice = createSlice({
             state.isIconClick=false;
         },
 
-        iconLeftClicked:(state)=>{
+        iconLeftClicked:(state,action)=>{
             state.isIconLeftClicked=true;
+            state.whichIconLeftClick=action.payload;
         },
 
         iconNotLeftClicked:(state)=>{
