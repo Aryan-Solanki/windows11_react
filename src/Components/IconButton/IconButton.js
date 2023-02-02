@@ -66,23 +66,14 @@ const  textStyle={
 }
 
 const LeftClicked=()=>{
-  console.log(isIconLeftClicked);
-  if(isIconLeftClicked===true){
-    
-    dispatch(iconNotLeftClicked());
-  }
-  else{
-    
-  
     dispatch(iconLeftClicked(props.filename));
-  }
-  
 }
 
 
 const customContent=(e)=>{
   e.preventDefault();
   setShow(true);
+  dispatch(iconNotLeftClicked());
   dispatch(iconClicked(props.filename));
   const {pageX,pageY}=e;
   if(pageX>window.innerWidth-380){

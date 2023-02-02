@@ -15,7 +15,7 @@ import { useState ,useEffect} from 'react';
 
 
 import {useSelector,useDispatch} from "react-redux";
-import {iconClicked,iconNotClicked} from "./Components/Slices/isIconClickSlice";
+import {iconClicked,iconNotClicked,iconNotLeftClicked} from "./Components/Slices/isIconClickSlice";
 
 
 
@@ -56,6 +56,7 @@ function App() {
 
   const customContent=(e)=>{
       e.preventDefault();
+      dispatch(iconNotLeftClicked());
       dispatch(iconNotClicked());
       const {pageX,pageY}=e;
       setShow(true);
