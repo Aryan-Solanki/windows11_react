@@ -2,8 +2,16 @@ import React,{useState} from 'react'
 import { IoIosArrowForward } from "react-icons/io";
 
 
+import {useSelector,useDispatch} from "react-redux";
+import {iconRefreshed,iconNotRefreshed} from "../Slices/refreshSlice";
+
+
 
 function MenuTile(props) {
+
+  const dispatch=useDispatch();
+
+  const delay = ms => new Promise(res => setTimeout(res, ms));
 
   const [isHover, setIsHover] = useState(false);
 
@@ -36,8 +44,16 @@ function MenuTile(props) {
     borderRadius:"5px"
   }
 
+  const refreshIcon= async ()=>{
+    dispatch(iconNotRefreshed());
+    await delay(200);
+    dispatch(iconRefreshed());
+    
+    
+  }
+
   return (
-    <div style={isHover?HoverMenuTileStyle:MenuTileStyle}  onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+    <div style={isHover?HoverMenuTileStyle:MenuTileStyle}  onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={refreshIcon}>
         <div style={{display:"flex",alignItems:"end"}}>
           <props.i.icon size={23} style={{paddingTop:"1px",paddingRight:"17px",color:"rgba(255, 255, 255,0.65)"}}/>
           <li style={{listStyle: "none",fontWeight:"normal",letterSpacing:"0.3px",fontSize:"16px"}}>{props.i.title}</li>
@@ -51,6 +67,13 @@ function MenuTile(props) {
 
 
 function ContextMenu(props) { 
+
+  
+
+
+  
+    // const isRefresh=useSelector((state)=>state.isRefresh.isRefresh);
+
 
     const MenuStyle={
       zIndex:1,
@@ -72,6 +95,8 @@ function ContextMenu(props) {
     const itemList=props.items.map((i)=>{
       return <MenuTile i={i}/>
     });
+
+
 
 
   return (

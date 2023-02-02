@@ -23,6 +23,8 @@ import {iconClicked,iconNotClicked,iconNotLeftClicked} from "./Components/Slices
 function App() {
 
   const isIconClick=useSelector((state)=>state.isIconClick.isIconClick);
+  const isRefresh=useSelector((state)=>state.isRefresh.isRefresh);
+
   const dispatch=useDispatch();
 
   const contextItem=[{title:"View",icon:FiGrid,arrow:true},{title:"Sort by",icon:TbArrowsSort,arrow:true},{title:"Refresh",icon:IoRefresh,arrow:false},];
@@ -84,9 +86,9 @@ function App() {
     <>
     <div style={{display:"flex",}} onContextMenu={(e)=>{e.preventDefault();}}>
       <div style={wallpaperStyle} onContextMenu={customContent}></div>
-      <div style={{display:"flex",flexDirection:"column",alignItems:"start",paddingLeft:"10px",paddingTop:"10px",zIndex:0,position:"absolute"}}>
+      {isRefresh&&<div style={{display:"flex",flexDirection:"column",alignItems:"start",paddingLeft:"10px",paddingTop:"10px",zIndex:0,position:"absolute"}}>
           {iconDataList}
-      </div>
+      </div>}
       {!isIconClick&&show&&<ContextMenu x={leftposition} y={topposition} height={customContentHeight} items={contextItem}/>}
     </div>
     </>
