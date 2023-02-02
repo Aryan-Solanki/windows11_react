@@ -4,6 +4,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState={
     isIconClick:false,
+    isIconLeftClicked:false,
     whichIconClick:"None",
 };
 
@@ -19,11 +20,19 @@ export const isIconClickSlice = createSlice({
         
         iconNotClicked:(state)=>{
             state.isIconClick=false;
+        },
+
+        iconLeftClicked:(state)=>{
+            state.isIconLeftClicked=true;
+        },
+
+        iconNotLeftClicked:(state)=>{
+            state.isIconLeftClicked=false;
         }
     }
 
 })
 
-export const {iconClicked,iconNotClicked}=isIconClickSlice.actions;
+export const {iconClicked,iconNotClicked,iconLeftClicked,iconNotLeftClicked}=isIconClickSlice.actions;
 
 export default isIconClickSlice.reducer;

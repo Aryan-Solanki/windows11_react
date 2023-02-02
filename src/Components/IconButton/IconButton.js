@@ -6,7 +6,7 @@ import ContextMenu from '../ContextMenu/ContextMenu';
 
 
 import {useSelector,useDispatch} from "react-redux";
-import {iconClicked,iconNotClicked} from "../Slices/isIconClickSlice";
+import {iconClicked,iconNotClicked,iconLeftClicked,iconNotLeftClicked} from "../Slices/isIconClickSlice";
 
 function IconButton(props) {  
 
@@ -31,6 +31,7 @@ function IconButton(props) {
   const [topposition,setTopposition]=useState(0);
 
   const isIconClick=useSelector((state)=>state.isIconClick.isIconClick);
+  const isIconLeftClick=useSelector((state)=>state.isIconClick.isIconLeftClick);
   const whichIconClick=useSelector((state)=>state.isIconClick.whichIconClick);
   // whichIconClick
   const dispatch=useDispatch();
@@ -63,6 +64,16 @@ const  textStyle={
     textShadow:"2px 2px 3px black",
 }
 
+const LeftClicked=()=>{
+  if(isIconLeftClick===true){
+    dispatch(iconNotLeftClicked);
+  }
+  else{
+    dispatch(iconLeftClicked);
+  }
+  
+}
+
 
 const customContent=(e)=>{
   e.preventDefault();
@@ -86,7 +97,7 @@ const contextItem=[{title:"View",icon:FiGrid,arrow:true}]
 
   return (
     <>
-      <div onContextMenu={customContent} style={{marginBottom:"25px",paddingBottom:"6px",width:"80px",display:"flex",alignItems:"center",zIndex:0,flexDirection:"column",background:(isHover||(whichIconClick===props.filename&&isIconClick))?"rgba(255, 255, 255,0.2)":"none",}} onMouseEnter={mouseEnter} onMouseLeave={mouseExit}>
+      <div onClick={LeftClicked} onContextMenu={customContent} style={{border:isIconLeftClick?"solid red 1px":"None" ,marginBottom:"25px",paddingBottom:"6px",width:"80px",display:"flex",alignItems:"center",zIndex:0,flexDirection:"column",background:(isHover||(whichIconClick===props.filename&&isIconClick))?"rgba(255, 255, 255,0.2)":"none",}} onMouseEnter={mouseEnter} onMouseLeave={mouseExit}>
           <button style={iconStyle}><img src={props.ima} alt="imae" style={iconImageStyle}/></button>
           <p style={textStyle}>{props.filename}</p>
       </div>
