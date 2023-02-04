@@ -26,6 +26,7 @@ function IconButton(props) {
 
 
   const customContentHeight=133;
+  const customContentWidth=380;
 
   const [leftposition,setLeftposition]=useState(0);
   const [topposition,setTopposition]=useState(0);
@@ -97,7 +98,7 @@ const contextItem=[{title:"View",icon:FiGrid,arrow:false}]
           <button style={iconStyle}><img src={props.ima} alt="imae" style={iconImageStyle}/></button>
           <p style={textStyle}>{props.filename}</p>
       </div>
-      {whichIconClick===props.filename&&isIconClick&&show&&<ContextMenu x={leftposition} y={topposition} height={customContentHeight} items={contextItem}/>}
+      {whichIconClick===props.filename&&isIconClick&&show&&<ContextMenu x={leftposition} y={topposition} height={customContentHeight} width={customContentWidth} items={contextItem}/>}
     </>
     
   )

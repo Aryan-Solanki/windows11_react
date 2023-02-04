@@ -29,6 +29,7 @@ function MenuTile(props) {
       // menuHovered(props.i.title);
   };
   const handleMouseLeave = () => {
+
       setIsHover(false);
       // menuNotHovered();
   };
@@ -41,7 +42,6 @@ function MenuTile(props) {
     alignItems:"center",
     justifyContent:"space-between",
     borderRadius:"5px",
-    border:"solid red 1px",
   }
 
   const HoverMenuTileStyle={
@@ -53,7 +53,6 @@ function MenuTile(props) {
     justifyContent:"space-between",
     background:"rgba(255, 255, 255,0.05)",
     borderRadius:"5px",
-    border:"solid red 1px",
   }
 
   const refreshIcon= async ()=>{
@@ -72,7 +71,7 @@ function MenuTile(props) {
         </div>
         <div>
           {props.i.arrow&&<IoIosArrowForward style={{color:"rgba(255, 255, 255,0.7)"}}/>}
-          {props.i.arrow&&isHover&&<ContextMenu x={370} y={15} height={200} items={props.i.menuOfContextMenu}/>}
+          {props.i.arrow&&isHover&&<ContextMenu x={370} y={10} height={200} width={150} items={props.i.menuOfContextMenu}/>}
         </div>
     </div>
     
@@ -92,7 +91,7 @@ function ContextMenu(props) {
       border:"solid rgba(85,85,85,0.6) 1px",
       position: "absolute",
       height:props.height,
-      width:"380px",
+      width:props.width,
       background:"rgba(0,0,0,0.56)",
       backdropFilter:" blur(70px) saturate(100%)",
       left:props.x,
@@ -108,17 +107,16 @@ function ContextMenu(props) {
 
 
 
-
+// remove vertical padding from ul
   return (
 
     <> 
     
     <div onContextMenu={(e)=>{e.preventDefault();}}>
       <div style={MenuStyle} ></div>
-      <div style={{color:"white",left:props.x,top:props.y,position:"absolute",zIndex:1,fontSize:"15px",}}>
-        <ul style={{paddingLeft:"8px",paddingTop:"0px",width:"364px"}}>
-          {itemList}
-        </ul>
+      <div style={{paddingTop:"13px",paddingLeft:"10px",color:"white",left:props.x,top:props.y,position:"absolute",zIndex:1,fontSize:"15px",width:props.width-20}}>
+
+        {itemList}
       </div>
     </div>
       

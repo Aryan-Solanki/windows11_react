@@ -48,7 +48,8 @@ function App() {
 
   
 
-  const customContentHeight=133;
+  const customContentHeight=143;
+  const customContentWidth=380;
 
   useEffect(() => {
     const handleClick=()=>setShow(false);
@@ -90,7 +91,7 @@ function App() {
       {isRefresh&&<div style={{display:"flex",flexDirection:"column",alignItems:"start",paddingLeft:"10px",paddingTop:"10px",zIndex:0,position:"absolute"}}>
           {iconDataList}
       </div>}
-      {!isIconClick&&show&&<ContextMenu x={leftposition} y={topposition} height={customContentHeight} items={contextItem}/>}
+      {!isIconClick&&show&&<ContextMenu x={leftposition} y={topposition} height={customContentHeight} width={customContentWidth} items={contextItem}/>}
     </div>
     </>
     
