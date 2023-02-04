@@ -89,7 +89,7 @@ const customContent=(e)=>{
     setTopposition(pageY);
   }
 }
-const contextItem=[{title:"View",icon:FiGrid,arrow:true}]
+const contextItem=[{title:"View",icon:FiGrid,arrow:false}]
 
   return (
     <>

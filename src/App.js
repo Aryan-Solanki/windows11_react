@@ -27,7 +27,8 @@ function App() {
 
   const dispatch=useDispatch();
 
-  const contextItem=[{title:"View",icon:FiGrid,arrow:true},{title:"Sort by",icon:TbArrowsSort,arrow:true},{title:"Refresh",icon:IoRefresh,arrow:false},];
+  const contextItem=[{title:"View",icon:FiGrid,arrow:true,menuOfContextMenu:[{title:"Sorty",icon:TbArrowsSort,arrow:false},{title:"Sorjikty",icon:TbArrowsSort,arrow:false}]},{title:"Sort by",icon:TbArrowsSort,arrow:false},{title:"Refresh",icon:IoRefresh,arrow:false},];
+  
 
 
   const wallpaperStyle={
