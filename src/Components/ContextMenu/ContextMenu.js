@@ -71,7 +71,7 @@ function MenuTile(props) {
         </div>
         <div>
           {props.i.arrow&&<IoIosArrowForward style={{color:"rgba(255, 255, 255,0.7)"}}/>}
-          {props.i.arrow&&isHover&&<ContextMenu x={370} y={10} height={200} width={150} items={props.i.menuOfContextMenu}/>}
+          {props.i.arrow&&isHover&&<ContextMenu x={((props.x+400+190)>window.innerWidth)?-190:370} y={props.y+143+10>window.innerHeight?-10:10} height={143} width={200} items={props.i.menuOfContextMenu}/>}
         </div>
     </div>
     
@@ -102,7 +102,7 @@ function ContextMenu(props) {
   
    
     const itemList=props.items.map((i)=>{
-      return <MenuTile i={i}/>
+      return <MenuTile i={i} x={props.x} y={props.y}/>
     });
 
 

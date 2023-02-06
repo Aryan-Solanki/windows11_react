@@ -27,7 +27,7 @@ function App() {
 
   const dispatch=useDispatch();
 
-  const contextItem=[{title:"View",icon:FiGrid,arrow:true,menuOfContextMenu:[{title:"Sorty",icon:TbArrowsSort,arrow:false},{title:"Sorjikty",icon:TbArrowsSort,arrow:false}]},{title:"Sort by",icon:TbArrowsSort,arrow:false},{title:"Refresh",icon:IoRefresh,arrow:false},];
+  const contextItem=[{title:"View",icon:FiGrid,arrow:true,menuOfContextMenu:[{title:"Large icons",icon:TbArrowsSort,arrow:false},{title:"Medium icons",icon:TbArrowsSort,arrow:false},{title:"Small icons",icon:TbArrowsSort,arrow:false}]},{title:"Sort by",icon:TbArrowsSort,arrow:false},{title:"Refresh",icon:IoRefresh,arrow:false},];
   
 
 
