@@ -7,9 +7,12 @@ import ThisPc from '../src/Asset/thispc.png';
 import GitHub from '../src/Asset/github.png';
 import IconButton from './Components/IconButton/IconButton.js';
 import ContextMenu from './Components/ContextMenu/ContextMenu';
-import { FiGrid } from "react-icons/fi";
+import { FiGrid , FiColumns } from "react-icons/fi";
 import { IoRefresh } from "react-icons/io5";
 import { TbArrowsSort } from "react-icons/tb";
+import { MdCheckBoxOutlineBlank } from "react-icons/md";
+import { CiGrid2H } from "react-icons/ci";
+
 
 import { useState ,useEffect} from 'react';
 
@@ -27,7 +30,7 @@ function App() {
 
   const dispatch=useDispatch();
 
-  const contextItem=[{title:"View",icon:FiGrid,arrow:true,menuOfContextMenu:[{title:"Large icons",icon:TbArrowsSort,arrow:false},{title:"Medium icons",icon:TbArrowsSort,arrow:false},{title:"Small icons",icon:TbArrowsSort,arrow:false}]},{title:"Sort by",icon:TbArrowsSort,arrow:false},{title:"Refresh",icon:IoRefresh,arrow:false},];
+  const contextItem=[{title:"View",icon:FiGrid,arrow:true,menuOfContextMenu:[{title:"Large icons",icon:MdCheckBoxOutlineBlank,arrow:false},{title:"Medium icons",icon:FiColumns,arrow:false},{title:"Small icons",icon:FiGrid,arrow:false}]},{title:"Sort by",icon:TbArrowsSort,arrow:true,menuOfContextMenu:[{title:"Large icons",icon:MdCheckBoxOutlineBlank,arrow:false},{title:"Medium icons",icon:FiColumns,arrow:false},{title:"Small icons",icon:FiGrid,arrow:false}]},{title:"Refresh",icon:IoRefresh,arrow:false},];
   
 
 
