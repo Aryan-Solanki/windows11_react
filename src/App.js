@@ -11,8 +11,6 @@ import { FiGrid , FiColumns } from "react-icons/fi";
 import { IoRefresh } from "react-icons/io5";
 import { TbArrowsSort } from "react-icons/tb";
 import { MdCheckBoxOutlineBlank } from "react-icons/md";
-import { CiGrid2H } from "react-icons/ci";
-
 
 import { useState ,useEffect} from 'react';
 
@@ -30,7 +28,7 @@ function App() {
 
   const dispatch=useDispatch();
 
-  const contextItem=[{title:"View",icon:FiGrid,arrow:true,menuOfContextMenu:[{title:"Large icons",icon:MdCheckBoxOutlineBlank,arrow:false},{title:"Medium icons",icon:FiColumns,arrow:false},{title:"Small icons",icon:FiGrid,arrow:false}]},{title:"Sort by",icon:TbArrowsSort,arrow:true,menuOfContextMenu:[{title:"Large icons",icon:MdCheckBoxOutlineBlank,arrow:false},{title:"Medium icons",icon:FiColumns,arrow:false},{title:"Small icons",icon:FiGrid,arrow:false}]},{title:"Refresh",icon:IoRefresh,arrow:false},];
+  const contextItem=[{title:"View",icon:FiGrid,arrow:true,posYContextMenu:13,contextOfContextMenuWidth:200,menuOfContextMenuIcon:true,menuOfContextMenu:[{title:"Large icons",menuOfContextMenuIcon:true,icon:MdCheckBoxOutlineBlank,arrow:false},{title:"Medium icons",menuOfContextMenuIcon:true,icon:FiColumns,arrow:false},{title:"Small icons",menuOfContextMenuIcon:true,icon:FiGrid,arrow:false}]},{title:"Sort by",contextOfContextMenuWidth:150,icon:TbArrowsSort,arrow:true,posYContextMenu:53,menuOfContextMenuIcon:true,menuOfContextMenu:[{title:"Name",arrow:false},{title:"Size",arrow:false},{title:"Date modified",arrow:false}]},{title:"Refresh",menuOfContextMenuIcon:true,icon:IoRefresh,arrow:false},];
   
 
 
@@ -94,7 +92,7 @@ function App() {
       {isRefresh&&<div style={{display:"flex",flexDirection:"column",alignItems:"start",paddingLeft:"10px",paddingTop:"10px",zIndex:0,position:"absolute"}}>
           {iconDataList}
       </div>}
-      {!isIconClick&&show&&<ContextMenu x={leftposition} y={topposition} height={customContentHeight} width={customContentWidth} items={contextItem}/>}
+      {!isIconClick&&show&&<ContextMenu x={leftposition} y={topposition} height={customContentHeight} width={customContentWidth} items={contextItem} />}
     </div>
     </>
     
