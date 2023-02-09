@@ -89,7 +89,7 @@ function App() {
     <>
     <div style={{display:"flex",cursor:'default'}} onContextMenu={(e)=>{e.preventDefault();}}>
       <div style={wallpaperStyle} onContextMenu={customContent}></div>
-      {isRefresh&&<div style={{display:"flex",flexDirection:"column",alignItems:"start",paddingLeft:"10px",paddingTop:"10px",zIndex:0,position:"absolute"}}>
+      {isRefresh&&<div style={{flexFlow: "row wrap",height: "100%",flexDirection:"column",display:"flex",alignItems:"start",paddingLeft:"10px",paddingTop:"0px",zIndex:0,position:"absolute"}}>
           {iconDataList}
       </div>}
       {!isIconClick&&show&&<ContextMenu x={leftposition} y={topposition} height={customContentHeight} width={customContentWidth} items={contextItem} />}
