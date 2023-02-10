@@ -29,12 +29,20 @@ function IconButton(props) {
   const customContentWidth=380;
 
   const [leftposition,setLeftposition]=useState(0);
-  const [topposition,setTopposition]=useState(0);
+  const [topposition,setTopposition]=useState(0); 
 
   const isIconClick=useSelector((state)=>state.isIconClick.isIconClick);
   const isIconLeftClicked=useSelector((state)=>state.isIconClick.isIconLeftClicked);
   const whichIconClick=useSelector((state)=>state.isIconClick.whichIconClick);
   const whichIconLeftClick=useSelector((state)=>state.isIconClick.whichIconLeftClick);
+  
+  const iconImageHeight=useSelector((state)=>state.iconsize.iconsize.iconImageHeight);
+  const iconDivHeight=useSelector((state)=>state.iconsize.iconsize.iconDivHeight);
+
+
+  
+
+
   // whichIconClick
   const dispatch=useDispatch();
   
@@ -54,9 +62,7 @@ const iconStyle={
     borderColor:"transparent",
     }
 
-const iconImageStyle={
-height:"60px",
-}
+
 
 const  textStyle={
     margin:"0px",
@@ -94,8 +100,8 @@ const contextItem=[{title:"View",icon:FiGrid,arrow:false}]
 
   return (
     <>
-      <div onClick={LeftClicked} onContextMenu={customContent} style={{height:"80px",width:"80px",cursor:"alias",border:(whichIconLeftClick===props.filename&&isIconLeftClicked)?"dotted white 1px":"None" ,marginBottom:"12px",marginTop:"12px",paddingBottom:"6px",display:"flex",alignItems:"center",zIndex:0,flexDirection:"column",background:(isHover||(whichIconClick===props.filename&&isIconClick))?"rgba(255, 255, 255,0.2)":"none",}} onMouseEnter={mouseEnter} onMouseLeave={mouseExit}>
-          <button style={iconStyle}><img src={props.ima} alt="imae" style={iconImageStyle}/></button>
+      <div onClick={LeftClicked} onContextMenu={customContent} style={{height:iconDivHeight,width:iconDivHeight,cursor:"alias",border:(whichIconLeftClick===props.filename&&isIconLeftClicked)?"dotted white 1px":"None" ,marginBottom:"12px",marginTop:"12px",paddingBottom:"6px",display:"flex",alignItems:"center",zIndex:0,flexDirection:"column",background:(isHover||(whichIconClick===props.filename&&isIconClick))?"rgba(255, 255, 255,0.2)":"none",}} onMouseEnter={mouseEnter} onMouseLeave={mouseExit}>
+          <button style={iconStyle}><img src={props.ima} alt="imae" style={{height:iconImageHeight}}/></button>
           <p style={textStyle}>{props.filename}</p>
       </div>
       {whichIconClick===props.filename&&isIconClick&&show&&<ContextMenu x={leftposition} y={topposition} height={customContentHeight} width={customContentWidth} items={contextItem}/>}

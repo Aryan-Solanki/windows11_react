@@ -11,6 +11,9 @@ import { FiGrid , FiColumns } from "react-icons/fi";
 import { IoRefresh } from "react-icons/io5";
 import { TbArrowsSort } from "react-icons/tb";
 import { MdCheckBoxOutlineBlank } from "react-icons/md";
+import {iconRefreshed,iconNotRefreshed} from "./Components/Slices/refreshSlice.js";
+import {smallIcon,mediumIcon,largeIcon} from "./Components/Slices/changeIconSlice";
+import {sortByName,sortBySize,sortByDate} from "./Components/Slices/sortSlice";
 
 import { useState ,useEffect} from 'react';
 
@@ -28,7 +31,43 @@ function App() {
 
   const dispatch=useDispatch();
 
-  const contextItem=[{title:"View",icon:FiGrid,arrow:true,posYContextMenu:13,contextOfContextMenuWidth:200,menuOfContextMenuIcon:true,menuOfContextMenu:[{title:"Large icons",menuOfContextMenuIcon:true,icon:MdCheckBoxOutlineBlank,arrow:false},{title:"Medium icons",menuOfContextMenuIcon:true,icon:FiColumns,arrow:false},{title:"Small icons",menuOfContextMenuIcon:true,icon:FiGrid,arrow:false}]},{title:"Sort by",contextOfContextMenuWidth:150,icon:TbArrowsSort,arrow:true,posYContextMenu:53,menuOfContextMenuIcon:true,menuOfContextMenu:[{title:"Name",arrow:false},{title:"Size",arrow:false},{title:"Date modified",arrow:false}]},{title:"Refresh",menuOfContextMenuIcon:true,icon:IoRefresh,arrow:false},];
+  const delay = ms => new Promise(res => setTimeout(res, ms));
+
+
+  
+  const refreshIcon= async ()=>{
+    dispatch(iconNotRefreshed());
+    await delay(200);
+    dispatch(iconRefreshed());
+    
+    
+  }
+
+  const largeIconSelected= async ()=>{
+    dispatch(largeIcon());
+  }
+
+  const mediumIconSelected= async ()=>{
+    dispatch(mediumIcon());
+  }
+
+  const smallIconSelected= async ()=>{
+    dispatch(smallIcon());
+  }
+
+  const nameSort= async ()=>{
+    dispatch(sortByName());
+  }
+
+  const sizeSort= async ()=>{
+    dispatch(sortBySize());
+  }
+
+  const dateSort= async ()=>{
+    dispatch(sortByDate());
+  }
+
+  const contextItem=[{title:"View",icon:FiGrid,arrow:true,posYContextMenu:13,contextOfContextMenuWidth:200,menuOfContextMenuIcon:true,menuOfContextMenu:[{title:"Large icons",menuOfContextMenuIcon:true,icon:MdCheckBoxOutlineBlank,arrow:false,func:largeIconSelected},{title:"Medium icons",menuOfContextMenuIcon:true,icon:FiColumns,arrow:false,func:mediumIconSelected},{title:"Small icons",menuOfContextMenuIcon:true,icon:FiGrid,arrow:false,func:smallIconSelected}]},{title:"Sort by",contextOfContextMenuWidth:150,icon:TbArrowsSort,arrow:true,posYContextMenu:53,menuOfContextMenuIcon:true,menuOfContextMenu:[{title:"Name",arrow:false,func:nameSort},{title:"Size",arrow:false,func:sizeSort},{title:"Date modified",arrow:false,func:dateSort}]},{title:"Refresh",menuOfContextMenuIcon:true,icon:IoRefresh,arrow:false,func:refreshIcon},];
   
 
 
@@ -78,9 +117,9 @@ function App() {
         setTopposition(pageY);
       }
     }
-
-  const iconData=[{icon:RecycleBin,title:"Recycle Bin"},{icon:ThisPc,title:"This PC"},{icon:PdfLogo,title:"Resume"},{icon:LinkedIn,title:"LinkedIn"},{icon:GitHub,title:"Github"}];
   
+  const iconData=useSelector((state)=>state.iconData.iconData);
+
   const iconDataList=iconData.map((i)=>{
     return <IconButton ima={i.icon} filename={i.title}/>
   });
