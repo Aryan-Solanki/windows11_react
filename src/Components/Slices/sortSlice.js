@@ -5,9 +5,18 @@ import PdfLogo from '../../../src/Asset/pdflogo.png';
 import ThisPc from '../../../src/Asset/thispc.png';
 import GitHub from '../../../src/Asset/github.png';
 
+import {useSelector,useDispatch} from "react-redux";
+
+
+
+const recycleBinListFunc = () => {
+    const recycleBinList = useSelector((state) => state.isRecycle.recycleBinList);
+  };
+
 
 
 const initialState={
+    
     iconData:[{icon:RecycleBin,title:"Recycle Bin"},{icon:ThisPc,title:"This PC"},{icon:PdfLogo,title:"Resume"},{icon:LinkedIn,title:"LinkedIn"},{icon:GitHub,title:"Github"}],
 };
 

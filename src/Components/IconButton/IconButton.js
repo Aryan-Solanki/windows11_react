@@ -1,12 +1,14 @@
 import React,{useState,useEffect} from 'react'
 import { FiGrid } from "react-icons/fi";
 import { IoRefresh } from "react-icons/io5";
-import { TbArrowsSort } from "react-icons/tb";
+import { RiDeleteBin5Line } from "react-icons/ri";
+
 import ContextMenu from '../ContextMenu/ContextMenu';
 
 
 import {useSelector,useDispatch} from "react-redux";
 import {iconClicked,iconNotClicked,iconLeftClicked,iconNotLeftClicked} from "../Slices/isIconClickSlice";
+import { addToRecycleBin ,emptyRecycleBin} from '../Slices/recyclebinSlice';
 
 function IconButton(props) {  
 
@@ -35,9 +37,11 @@ function IconButton(props) {
   const isIconLeftClicked=useSelector((state)=>state.isIconClick.isIconLeftClicked);
   const whichIconClick=useSelector((state)=>state.isIconClick.whichIconClick);
   const whichIconLeftClick=useSelector((state)=>state.isIconClick.whichIconLeftClick);
-  
+
   const iconImageHeight=useSelector((state)=>state.iconsize.iconsize.iconImageHeight);
   const iconDivHeight=useSelector((state)=>state.iconsize.iconsize.iconDivHeight);
+
+  const recycleBinList=useSelector((state)=>state.isRecycle.recycleBinList);
 
 
   
@@ -96,15 +100,22 @@ const customContent=(e)=>{
     setTopposition(pageY);
   }
 }
-const contextItem=[{title:"View",icon:FiGrid,arrow:false}]
 
+const addRecycleBin=()=>{
+  dispatch(addToRecycleBin(props.filename));
+}
+
+const contextItem=[{title:"Open",rightText:true,rightTextValue:"Enter",iconImage:true,ima:props.ima,arrow:false,menuOfContextMenuIcon:false},{title:"Delete",icon:RiDeleteBin5Line,arrow:false,menuOfContextMenuIcon:true,func:addRecycleBin}];
+  
   return (
     <>
-      <div onClick={LeftClicked} onContextMenu={customContent} style={{height:iconDivHeight,width:iconDivHeight,cursor:"alias",border:(whichIconLeftClick===props.filename&&isIconLeftClicked)?"dotted white 1px":"None" ,marginBottom:"12px",marginTop:"12px",paddingBottom:"6px",display:"flex",alignItems:"center",zIndex:0,flexDirection:"column",background:(isHover||(whichIconClick===props.filename&&isIconClick))?"rgba(255, 255, 255,0.2)":"none",}} onMouseEnter={mouseEnter} onMouseLeave={mouseExit}>
-          <button style={iconStyle}><img src={props.ima} alt="imae" style={{height:iconImageHeight}}/></button>
-          <p style={textStyle}>{props.filename}</p>
+      <div style={{visibility:recycleBinList.includes(props.filename)?"hidden":"visible"}}>
+        <div onClick={LeftClicked} onContextMenu={customContent} style={{height:iconDivHeight,width:iconDivHeight,cursor:"alias",border:(whichIconLeftClick===props.filename&&isIconLeftClicked)?"dotted white 1px":"None" ,marginBottom:"12px",marginTop:"12px",paddingBottom:"6px",display:"flex",alignItems:"center",zIndex:0,flexDirection:"column",background:(isHover||(whichIconClick===props.filename&&isIconClick))?"rgba(255, 255, 255,0.2)":"none",}} onMouseEnter={mouseEnter} onMouseLeave={mouseExit}>
+            <button style={iconStyle}><img src={props.ima} alt="imae" style={{height:iconImageHeight}}/></button>
+            <p style={textStyle}>{props.filename}</p>
+        </div>
+        {whichIconClick===props.filename&&isIconClick&&show&&<ContextMenu x={leftposition} y={topposition} height={customContentHeight} width={customContentWidth} items={contextItem}/>}
       </div>
-      {whichIconClick===props.filename&&isIconClick&&show&&<ContextMenu x={leftposition} y={topposition} height={customContentHeight} width={customContentWidth} items={contextItem}/>}
     </>
     
   )

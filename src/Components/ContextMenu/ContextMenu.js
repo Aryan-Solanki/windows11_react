@@ -60,11 +60,13 @@ function MenuTile(props) {
   return (
     <div style={isHover?HoverMenuTileStyle:MenuTileStyle}  onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} onClick={props.i.func}>
         <div style={{display:"flex",alignItems:"end"}}>
+          {props.i.iconImage&&<img src={props.i.ima} alt="imae" style={{height:25,paddingRight:"17px",}}/>}
           {props.i.menuOfContextMenuIcon&&<props.i.icon size={23} style={{paddingTop:"1px",paddingRight:"17px",color:"rgba(255, 255, 255,0.65)"}}/>}
           <li style={{listStyle: "none",fontWeight:"normal",letterSpacing:"0.3px",fontSize:"16px"}}>{props.i.title}</li>
         </div>
         <div>
           {props.i.arrow&&<IoIosArrowForward style={{color:"rgba(255, 255, 255,0.7)"}}/>}
+          {props.i.rightText&&<li style={{listStyle: "none",color:"rgba(255, 255, 255,0.65)",fontWeight:"normal",paddingRight:"20px",letterSpacing:"0.3px",fontSize:"13px"}}>{props.i.rightTextValue}</li>}
           {props.i.arrow&&isHover&&<ContextMenu x={((props.x+400+190)>window.innerWidth)?-190:370} y={props.y+143+10>window.innerHeight?-10:props.i.posYContextMenu} height={143} width={props.contextOfContextMenuWidth} items={props.i.menuOfContextMenu}/>}
         </div>
     </div>

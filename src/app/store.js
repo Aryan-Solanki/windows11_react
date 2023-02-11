@@ -4,6 +4,7 @@ import refreshSlice from '../Components/Slices/refreshSlice';
 import menuOfContextMenuSlice from '../Components/Slices/menuOfContextMenuSlice';
 import changeIconSlice from '../Components/Slices/changeIconSlice';
 import sortSlice from '../Components/Slices/sortSlice';
+import recyclebinSlice from '../Components/Slices/recyclebinSlice';
 
 export const store = configureStore({
     reducer:{
@@ -12,6 +13,7 @@ export const store = configureStore({
         isMenuHovered:menuOfContextMenuSlice,
         iconsize:changeIconSlice,
         iconData:sortSlice,
+        isRecycle:recyclebinSlice,
 
     }
 })
