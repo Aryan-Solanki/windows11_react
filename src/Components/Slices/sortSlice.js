@@ -5,14 +5,9 @@ import PdfLogo from '../../../src/Asset/pdflogo.png';
 import ThisPc from '../../../src/Asset/thispc.png';
 import GitHub from '../../../src/Asset/github.png';
 
-import {useSelector,useDispatch} from "react-redux";
+// import {useSelector,useDispatch} from "react-redux";
 
-
-
-const recycleBinListFunc = () => {
-    const recycleBinList = useSelector((state) => state.isRecycle.recycleBinList);
-  };
-
+// const recycleBinList=useSelector((state)=>state.isRecycle.recycleBinList);
 
 
 const initialState={
