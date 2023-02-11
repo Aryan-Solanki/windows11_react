@@ -1,7 +1,9 @@
 import React,{useState,useEffect} from 'react'
+
+
 import { FiGrid } from "react-icons/fi";
-import { IoRefresh } from "react-icons/io5";
-import { RiDeleteBin5Line } from "react-icons/ri";
+import { MdOutlineRestore } from "react-icons/md";
+import { AiOutlineDelete } from "react-icons/ai";
 
 import ContextMenu from '../ContextMenu/ContextMenu';
 
@@ -10,7 +12,7 @@ import FilledRecycleBin from '../../../src/Asset/recyclebinfilled.png';
 
 import {useSelector,useDispatch} from "react-redux";
 import {iconClicked,iconNotClicked,iconLeftClicked,iconNotLeftClicked} from "../Slices/isIconClickSlice";
-import { addToRecycleBin ,emptyRecycleBin} from '../Slices/recyclebinSlice';
+import { addToRecycleBin ,emptyRecycleBin,permanentDelete} from '../Slices/recyclebinSlice';
 
 function IconButton(props) {  
 
@@ -30,7 +32,7 @@ function IconButton(props) {
 
 
   const customContentHeight=133;
-  const customContentWidth=380;
+  const customContentWidth=300;
 
   const [leftposition,setLeftposition]=useState(0);
   const [topposition,setTopposition]=useState(0); 
@@ -44,6 +46,7 @@ function IconButton(props) {
   const iconDivHeight=useSelector((state)=>state.iconsize.iconsize.iconDivHeight);
 
   const recycleBinList=useSelector((state)=>state.isRecycle.recycleBinList);
+  const permanentDeletedList=useSelector((state)=>state.isRecycle.permanentDeletedList);
 
 
   
@@ -107,16 +110,26 @@ const addRecycleBin=()=>{
   dispatch(addToRecycleBin(props.filename));
 }
 
-const contextItem=[{title:"Open",rightText:true,rightTextValue:"Enter",iconImage:true,ima:props.ima,arrow:false,menuOfContextMenuIcon:false},{title:"Delete",icon:RiDeleteBin5Line,arrow:false,menuOfContextMenuIcon:true,func:addRecycleBin}];
+const restoreRecycleBin=()=>{
+  dispatch(emptyRecycleBin());
+}
+
+const permanentDeleteItem=()=>{
+  dispatch(permanentDelete());
+}
+
+const contextItem=[{title:"Open",rightText:true,rightTextValue:"Enter",iconImage:true,ima:props.ima,arrow:false,menuOfContextMenuIcon:false},{title:"Delete",icon:AiOutlineDelete,arrow:false,menuOfContextMenuIcon:true,func:addRecycleBin}];
+
+const recycleContextItem=[{title:"Restore",icon:MdOutlineRestore,arrow:false,menuOfContextMenuIcon:true,func:restoreRecycleBin},{title:"Empty Recycle Bin",icon:AiOutlineDelete,arrow:false,menuOfContextMenuIcon:true,func:permanentDeleteItem}];
   
   return (
     <>
-      <div style={{visibility:recycleBinList.includes(props.filename)?"hidden":"visible"}}>
+      <div style={{visibility:recycleBinList.includes(props.filename)||permanentDeletedList.includes(props.filename)?"hidden":"visible"}}>
         <div onClick={LeftClicked} onContextMenu={customContent} style={{height:iconDivHeight,width:iconDivHeight,cursor:"alias",border:(whichIconLeftClick===props.filename&&isIconLeftClicked)?"dotted white 1px":"None" ,marginBottom:"12px",marginTop:"12px",paddingBottom:"6px",display:"flex",alignItems:"center",zIndex:0,flexDirection:"column",background:(isHover||(whichIconClick===props.filename&&isIconClick))?"rgba(255, 255, 255,0.2)":"none",}} onMouseEnter={mouseEnter} onMouseLeave={mouseExit}>
             <button style={iconStyle}><img src={props.filename==="Recycle Bin"&&recycleBinList.length>0?FilledRecycleBin:props.ima} alt="imae" style={{height:iconImageHeight}}/></button>
             <p style={textStyle}>{props.filename}</p>
         </div>
-        {whichIconClick===props.filename&&isIconClick&&show&&<ContextMenu x={leftposition} y={topposition} height={customContentHeight} width={customContentWidth} items={contextItem}/>}
+        {whichIconClick===props.filename&&isIconClick&&show&&<ContextMenu x={leftposition} y={topposition} height={customContentHeight} width={customContentWidth} items={props.filename=="Recycle Bin"?recycleContextItem:contextItem}/>}
       </div>
     </>
     

@@ -4,6 +4,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState={
     recycleBinList:[],
+    permanentDeletedList:[],
 };
 
 export const recyclebinSlice = createSlice({
@@ -16,12 +17,16 @@ export const recyclebinSlice = createSlice({
 
         emptyRecycleBin:(state)=>{
             state.recycleBinList=[];
+        },
+        permanentDelete:(state)=>{
+            state.permanentDeletedList=[...state.recycleBinList];
+            state.recycleBinList=[];
         }
         
     }
 
 })
 
-export const {addToRecycleBin,emptyRecycleBin}=recyclebinSlice.actions;
+export const {addToRecycleBin,emptyRecycleBin,permanentDelete}=recyclebinSlice.actions;
 
 export default recyclebinSlice.reducer;
