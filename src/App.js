@@ -1,10 +1,5 @@
 import './App.css';
 import Imag from '../src/Asset/wallpaper.jpg';
-import RecycleBin from '../src/Asset/recyclebin.png';
-import LinkedIn from '../src/Asset/linkedin.png';
-import PdfLogo from '../src/Asset/pdflogo.png';
-import ThisPc from '../src/Asset/thispc.png';
-import GitHub from '../src/Asset/github.png';
 import IconButton from './Components/IconButton/IconButton.js';
 import ContextMenu from './Components/ContextMenu/ContextMenu';
 import { FiGrid , FiColumns } from "react-icons/fi";
@@ -19,7 +14,7 @@ import { useState ,useEffect} from 'react';
 
 
 import {useSelector,useDispatch} from "react-redux";
-import {iconClicked,iconNotClicked,iconNotLeftClicked} from "./Components/Slices/isIconClickSlice";
+import {iconNotClicked,iconNotLeftClicked} from "./Components/Slices/isIconClickSlice";
 
 
 
@@ -129,8 +124,7 @@ function App() {
   return (
     <>
     <div style={{display:"flex",cursor:'default'}} onContextMenu={(e)=>{e.preventDefault();}}>
-      {/* <div style={wallpaperStyle} onContextMenu={customContent}></div> */}
-      <div style={wallpaperStyle} onContextMenu={()=>{}}></div>
+      <div style={wallpaperStyle} onContextMenu={customContent}></div>
       {isRefresh&&<div style={{flexFlow: "row wrap",height: "100%",flexDirection:"column",display:"flex",alignItems:"start",paddingLeft:"10px",paddingTop:"0px",zIndex:0,position:"absolute"}}>
           {iconDataList}
       </div>}
