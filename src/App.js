@@ -9,8 +9,11 @@ import { MdCheckBoxOutlineBlank } from "react-icons/md";
 import { iconRefreshed, iconNotRefreshed } from "./Components/Slices/refreshSlice.js";
 import { smallIcon, mediumIcon, largeIcon } from "./Components/Slices/changeIconSlice";
 import { sortByName, sortBySize, sortByDate } from "./Components/Slices/sortSlice";
+import BottomBarCenterIcon from './Components/BottomBarCenterIcon/BottomBarCenterIcon';
 
-import home from '../src/Asset/home.png';
+
+
+
 
 import { useState, useEffect } from 'react';
 
@@ -118,10 +121,19 @@ function App() {
   }
 
   const iconData = useSelector((state) => state.iconData.iconData);
+  const bottomBarCenter=useSelector((state) => state.iconData.bottomBarCenter);
+  const bottomBarRight=useSelector((state) => state.iconData.bottomBarRight);
+
 
   const iconDataList = iconData.map((i) => {
     return <IconButton ima={i.icon} filename={i.title} />
   });
+
+
+
+
+
+
 
   return (
     <>
@@ -133,28 +145,20 @@ function App() {
         {!isIconClick && show && <ContextMenu x={leftposition} y={topposition} height={customContentHeight} width={customContentWidth} items={contextItem} />}
 
 
-        <div style={{ display: "flex" ,justifyContent: "space-between", alignItems: "center", position: "absolute", height: "60px", width: "100vw", backgroundColor: "red", bottom: "0" }}>
+        <div style={{ display: "flex" , alignItems: "center", position: "absolute", height: "50px", width: "100vw", backgroundColor: "rgba(215,231,249,255)", bottom: "0" }}>
           
           
-          <div style={{paddingLeft:"10px"}}>
-            {iconData.map((i) => {
-              return <img src={home} alt="home" style={{ height: "30px", padding: "7px 7px", border: "solid black 1px" }} />
-            })}
-
-          </div>
-          
-          
-          <div>
-            {iconData.map((i) => {
-              return <img src={home} alt="home" style={{ height: "30px", padding: "7px 7px", border: "solid black 1px" }} />
+          <div style={{display:"flex",position:"absolute",left:"50%",transform: "translate(-50%,0%)"}}>
+            {bottomBarCenter.map((i) => {
+              return <BottomBarCenterIcon  i={i}/>
             })}
           </div>
 
           
           
-          <div style={{paddingRight:"10px"}}>
-            {iconData.map((i) => {
-              return <img src={home} alt="home" style={{ height: "30px", padding: "7px 7px", border: "solid black 1px" }} />
+          <div style={{position:"absolute",right:"0px",paddingRight:"10px"}}>
+            {bottomBarRight.map((i) => {
+              return <img src={i} alt="home" style={{ height: "15px", padding: "7px 7px"}} />
             })}
           </div>
 

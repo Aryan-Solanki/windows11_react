@@ -5,6 +5,25 @@ import PdfLogo from '../../../src/Asset/pdflogo.png';
 import ThisPc from '../../../src/Asset/thispc.png';
 import GitHub from '../../../src/Asset/github.png';
 
+
+
+
+import arrow from '../../Asset/arrow.png';
+import battery from '../../Asset/battery.png';
+import wifi from '../../Asset/wifi.png';
+import audio from '../../Asset/audio.png';
+import sidepane from '../../Asset/sidepane.png';
+
+
+import home from '../../Asset/home.png';
+import search from '../../Asset/search.png';
+import widget from '../../Asset/widget.png';
+import explorer from '../../Asset/explorer.png';
+import setting from '../../Asset/settings.png';
+import store from '../../Asset/store.png';
+import edge from '../../Asset/edge.png';
+import code from '../../Asset/code.png';
+
 // import {useSelector,useDispatch} from "react-redux";
 
 // const recycleBinList=useSelector((state)=>state.isRecycle.recycleBinList);
@@ -13,6 +32,9 @@ import GitHub from '../../../src/Asset/github.png';
 const initialState={
     
     iconData:[{icon:RecycleBin,title:"Recycle Bin"},{icon:ThisPc,title:"This PC"},{icon:PdfLogo,title:"Resume"},{icon:LinkedIn,title:"LinkedIn"},{icon:GitHub,title:"Github"}],
+    bottomBarCenter:[home,search,widget,explorer,setting,store,edge,code],
+    bottomBarRight:[arrow,battery,wifi,audio,sidepane],
+
 };
 
 export const sortSlice = createSlice({
