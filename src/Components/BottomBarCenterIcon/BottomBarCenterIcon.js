@@ -20,7 +20,7 @@ function BottomBarCenterIcon(props) {
 
     return (
         <div onMouseEnter={mouseEnter} onMouseLeave={mouseExit} style={{background:isHover?"rgba(255, 255, 255,0.8)":"none"}}>
-            <img src={props.i} alt="home" style={{ height: "25px", padding: "7px 10px" }} />
+            <img src={props.i} alt="home" style={{ height: "30px", padding: "7px 10px" }} />
         </div>
     )
 }

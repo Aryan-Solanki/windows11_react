@@ -11,7 +11,7 @@ import { smallIcon, mediumIcon, largeIcon } from "./Components/Slices/changeIcon
 import { sortByName, sortBySize, sortByDate } from "./Components/Slices/sortSlice";
 import BottomBarCenterIcon from './Components/BottomBarCenterIcon/BottomBarCenterIcon';
 
-
+import BottomBarRightIcon from './Components/BottomBarRightIcon/BottomBarRightIcon';
 
 
 
@@ -156,9 +156,9 @@ function App() {
 
           
           
-          <div style={{position:"absolute",right:"0px",paddingRight:"10px"}}>
+          <div style={{display:"flex",position:"absolute",right:"0px",paddingRight:"10px"}}>
             {bottomBarRight.map((i) => {
-              return <img src={i} alt="home" style={{ height: "15px", padding: "7px 7px"}} />
+              return <BottomBarRightIcon  i={i}/>
             })}
           </div>
 
