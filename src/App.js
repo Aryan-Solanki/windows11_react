@@ -12,7 +12,7 @@ import { sortByName, sortBySize, sortByDate } from "./Components/Slices/sortSlic
 import BottomBarCenterIcon from './Components/BottomBarCenterIcon/BottomBarCenterIcon';
 
 import BottomBarRightIcon from './Components/BottomBarRightIcon/BottomBarRightIcon';
-
+import RightSlideBar from './Components/RiightSlideBar/RightSlideBar';
 
 
 import { useState, useEffect } from 'react';
@@ -20,6 +20,7 @@ import { useState, useEffect } from 'react';
 
 import { useSelector, useDispatch } from "react-redux";
 import { iconNotClicked, iconNotLeftClicked } from "./Components/Slices/isIconClickSlice";
+
 
 
 
@@ -125,6 +126,9 @@ function App() {
   const bottomBarRight=useSelector((state) => state.iconData.bottomBarRight);
 
 
+  const isSideBarOpen = useSelector((state) => state.isIconClick.isSideBarOpen);
+
+
   const iconDataList = iconData.map((i) => {
     return <IconButton ima={i.icon} filename={i.title} />
   });
@@ -145,6 +149,8 @@ function App() {
         {!isIconClick && show && <ContextMenu x={leftposition} y={topposition} height={customContentHeight} width={customContentWidth} items={contextItem} />}
 
 
+        {isSideBarOpen&&<RightSlideBar/>}
+
         <div style={{ display: "flex" , alignItems: "center", position: "absolute", height: "50px", width: "100vw", backgroundColor: "rgba(215,231,249,255)", bottom: "0" }}>
           
           
@@ -161,10 +167,12 @@ function App() {
               return <BottomBarRightIcon  i={i}/>
             })}
           </div>
+          
 
 
 
         </div>
+        
       </div>
 
 

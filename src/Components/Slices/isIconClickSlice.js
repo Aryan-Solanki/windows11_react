@@ -7,6 +7,7 @@ const initialState={
     isIconLeftClicked:false,
     whichIconClick:"None",
     whichIconLeftClick:"None",
+    isSideBarOpen:false,
 };
 
 export const isIconClickSlice = createSlice({
@@ -30,11 +31,21 @@ export const isIconClickSlice = createSlice({
 
         iconNotLeftClicked:(state)=>{
             state.isIconLeftClicked=false;
+        },
+
+        openSideBarr:(state)=>{
+            state.isSideBarOpen=true;
+        },
+
+        closeSideBarr:(state)=>{
+            state.isSideBarOpen=false;
         }
+
+        
     }
 
 })
 
-export const {iconClicked,iconNotClicked,iconLeftClicked,iconNotLeftClicked}=isIconClickSlice.actions;
+export const {iconClicked,iconNotClicked,iconLeftClicked,iconNotLeftClicked,openSideBarr,closeSideBarr}=isIconClickSlice.actions;
 
 export default isIconClickSlice.reducer;
