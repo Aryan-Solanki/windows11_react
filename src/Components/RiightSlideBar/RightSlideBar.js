@@ -17,9 +17,28 @@ import project from '../../Asset/project.png';
 import tablet from '../../Asset/tablet.png';
 
 
+
+import wlocation from '../../Asset/wlocation.png';
+import wsaver from '../../Asset/wsaver.png';
+import wbluetooth from '../../Asset/wbluetooth.png';
+import wnightlight from '../../Asset/wnightlight.png';
+import wairplane from '../../Asset/wairplane.png';
+import wnearshare from '../../Asset/wnearshare.png';
+import wdash from '../../Asset/wdash.png';
+import wmoon from '../../Asset/wmoon.png';
+import wnetwork from '../../Asset/wnetwork.png';
+import wconnect from '../../Asset/wconnect.png';
+import wproject from '../../Asset/wproject.png';
+import wtablet from '../../Asset/wtablet.png';
+
+
+
+
+
+
 function RightSlideBar() {
 
-  const item=[{title:"Location",image:location},{title:"Batttery Saver",image:saver},{title:"Bluetooth",image:bluetooth},{title:"Night Light",image:nightlight},{title:"Airplane",image:airplane},{title:"Nearby",image:nearshare},{title:"All Settings",image:dash},{title:"Priority Only",image:moon},{title:"Network",image:network},{title:"Connect",image:connect},{title:"Project",image:project},{title:"Tablet Mode",image:tablet}]
+  const item=[{title:"Location",image:location,white:wlocation},{title:"Batttery Saver",image:saver,white:wsaver},{title:"Bluetooth",image:bluetooth,white:wbluetooth},{title:"Night Light",image:nightlight,white:wnightlight},{title:"Airplane",image:airplane,white:wairplane},{title:"Nearby",image:nearshare,white:wnearshare},{title:"All Settings",image:dash,white:wdash},{title:"Priority Only",image:moon,white:wmoon},{title:"Network",image:network,white:wnetwork},{title:"Connect",image:connect,white:wconnect},{title:"Project",image:project,white:wproject},{title:"Tablet Mode",image:tablet,white:wtablet}]
 
 
   return (
@@ -27,7 +46,7 @@ function RightSlideBar() {
 
       <div style={{position:"absolute",bottom:"220px",display:"flex",justifyContent:"center",height:"100px",flexFlow: "row wrap"}}>
         {item.map((i) => {
-              return <RightSlideBarIcon title={i.title} img={i.image}/>
+              return <RightSlideBarIcon title={i.title} img={i.image} white={i.white}/>
             })}
       </div>
 
