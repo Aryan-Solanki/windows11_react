@@ -8,6 +8,7 @@ const initialState={
     whichIconClick:"None",
     whichIconLeftClick:"None",
     isSideBarOpen:false,
+    isNightMode:false,
 };
 
 export const isIconClickSlice = createSlice({
@@ -39,6 +40,13 @@ export const isIconClickSlice = createSlice({
 
         closeSideBarr:(state)=>{
             state.isSideBarOpen=false;
+        },
+
+        onNightMode:(state)=>{
+            state.isNightMode=true;
+        },
+        offNightMode:(state)=>{
+            state.isNightMode=false;
         }
 
         
@@ -46,6 +54,6 @@ export const isIconClickSlice = createSlice({
 
 })
 
-export const {iconClicked,iconNotClicked,iconLeftClicked,iconNotLeftClicked,openSideBarr,closeSideBarr}=isIconClickSlice.actions;
+export const {iconClicked,iconNotClicked,iconLeftClicked,iconNotLeftClicked,openSideBarr,closeSideBarr,onNightMode,offNightMode}=isIconClickSlice.actions;
 
 export default isIconClickSlice.reducer;

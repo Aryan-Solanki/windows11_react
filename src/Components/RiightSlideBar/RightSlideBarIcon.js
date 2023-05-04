@@ -1,15 +1,35 @@
 import React from 'react'
 import { useState } from 'react';
+import { onNightMode, offNightMode } from "../../Components/Slices/isIconClickSlice";
 
+
+import { useSelector, useDispatch } from "react-redux";
 
 function RightSlideBarIcon(props) {
 
+  const dispatch = useDispatch();
+
   const [clicked, setclicked] = useState(false);
+
+  
+
+  const isNightMode = useSelector((state) => state.isIconClick.isNightMode);
 
 
   const onclick=()=>{
 
-    if(clicked==true){
+    if(props.title==="Night Light"){
+
+      if(isNightMode){
+        dispatch(offNightMode());
+      }
+      else{
+        dispatch(onNightMode());
+      }
+
+    }
+
+    if(clicked===true){
       setclicked(false);
     }
     else{

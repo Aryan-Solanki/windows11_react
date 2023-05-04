@@ -128,20 +128,17 @@ function App() {
 
   const isSideBarOpen = useSelector((state) => state.isIconClick.isSideBarOpen);
 
+  const isNightMode = useSelector((state) => state.isIconClick.isNightMode);
+
 
   const iconDataList = iconData.map((i) => {
     return <IconButton ima={i.icon} filename={i.title} />
   });
 
 
-
-
-
-
-
   return (
     <>
-      <div style={{ display: "flex", cursor: 'default' }} onContextMenu={(e) => { e.preventDefault(); }}>
+      <div style={{ display: "flex", cursor: 'default' ,filter: isNightMode?"sepia(60%)":"none",transitionDuration: "500ms"}} onContextMenu={(e) => { e.preventDefault(); }}>
         <div style={wallpaperStyle} onContextMenu={customContent}></div>
         {isRefresh && <div style={{ flexFlow: "row wrap", height: "100%", flexDirection: "column", display: "flex", alignItems: "start", paddingLeft: "10px", paddingTop: "0px", zIndex: 0, position: "absolute" }}>
           {iconDataList}
